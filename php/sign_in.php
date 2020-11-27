@@ -34,23 +34,23 @@
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
 			<form class="login100-form validate-form">
 				<span class="login100-form-title p-b-37">
-					Sign In
+					Sign up
 				</span>
 
 				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-					<input class="input100" type="text" name="username" placeholder="username or email">
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="wrap-input100 validate-input m-b-25" data-validate = "Enter password">
-					<input class="input100" type="password" name="pass" placeholder="password">
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">
-						Sign In
-					</button>
+					
+                   
+                    <form action="sign_in.php" method="POST">
+                        <input class="input100" name="usuario" type="text" placeholder="Usuario" required value="">
+                        <input class="input100" name="email" type="text" placeholder="Email" required value="">
+                        <input class="input100" name="password" type="password" placeholder="Contraseña" required>
+                        <input class="input100" name="confirm_password" type="password" placeholder="Confirmar Contraseña" required>
+                        <input class="input100" name="nombre" type="text" placeholder="Nombre" required value="">
+                        <input class="input100" name="ape_pat" type="text" placeholder="Apellido Paterno" required value="">
+                        <input class="input100" name="ape_mat" type="text" placeholder="Apellido Materno" required value="">
+                        <input class="login100-form-btn" type="submit" value="Enviar">
+                    </form>
+                    <span class="focus-input100"></span>
 				</div>
 
 				<div class="text-center p-t-57 p-b-20">
