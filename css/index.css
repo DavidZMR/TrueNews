@@ -1,0 +1,22 @@
+.row-full{
+    width: 100vw;
+    position: relative;
+    margin-left: -50vw;
+    height: auto;
+    margin-top: 0px;
+    left: 50%;
+    align-content: center;
+    align-items: center;
+}
+
+.cat{
+    height: 65px;
+    width: 65px;
+    align-content: center;
+}
+.categoria{
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white;
+}
