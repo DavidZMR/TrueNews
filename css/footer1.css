@@ -3,7 +3,7 @@
 body {
     background: linear-gradient(0deg, #fff, 50%, #DEEEFE);
     font-family: 'Rubik', sans-serif;
-    height: 100 !important
+    height: 100 !important;
 }
 
 .container-fluid {
