@@ -71,6 +71,7 @@
 
 				<div class="text-center">
 					<a href="/php/sign_in.php" class="txt2 hov1">
+					<a href="sign_up.php" class="txt2 hov1">
 						Sign Up
 					</a>
 				</div>
