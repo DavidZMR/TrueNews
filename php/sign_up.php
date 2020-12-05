@@ -9,23 +9,33 @@
 	$email = isset($_POST['email']) ? $_POST['email'] : "";
 	$telefono = isset($_POST['telefono']) ? $_POST['telefono'] : "";
 	//lector
+	// $bandLector=0;
 	$bandLector = isset($_POST['banderaLector']) ? $_POST['banderaLector'] :"";
 	$estado = isset($_POST['estado']) ? $_POST['estado'] : "";
+	//periodista
+	$bandPeriodista= isset($_POST['banderaPeriodista']) ? $_POST['banderaPeriodista'] : "";
+	//periodista valido
+	$banderaVal= isset($_POST['banderaValido']) ? $_POST['banderaValido'] :"";
+	$id_periodico= isset($_POST['idPeriodico']) ? $_POST['idPeriodico'] :"";
+	$cedula= isset($_POST['cedula']) ? $_POST['cedula'] :"";
+	//periodista invalido
+	$banderaNoVal= isset($_POST['banderaInvalido']) ? $_POST['banderaInvalido'] :"";
+	$publicaciones=  isset($_POST['publicaciones']) ? $_POST['publicaciones'] :"";
 
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
         if ($_POST['password'] == $_POST['confirm_password']) {
             $password = $_POST['password'];
-            $sql = "INSERT INTO usuario(id,nombres,ap_pa,ap_ma,edad,correo,tel,pass)";
+            $sql = "INSERT INTO usuario(id,nombres,ap_pa,ap_ma,edad,correo,tel,pass) ";
             $sql .= "VALUES('$usuario', '$nombre', '$ape_pat', '$ape_mat', '$fecha','$email', '$telefono','$password')";
             if (insertDB($sql)) {
-                header('Location: login.php?s=1');
+                //header('Location: login.php?s=1');
                 $message = 'Insertado en usuario';
             } else {
                 $message = 'Error en usuario';
             }
-
-            if ($bandLector == 'Lector'){
-                $sqlLector = "INSERT INTO lector (id, id_usuario, estado)";
+			
+            if ($bandLector == "Lector"){
+                $sqlLector = "INSERT INTO lector (id, id_usuario, estado) ";
                 $sqlLector .= "VALUES ('$usuario','$usuario','$estado')";
                 if (insertDB($sqlLector)) {
                     header('Location: login.php');
@@ -33,8 +43,42 @@
                 } else {
                     $message = 'Error en lector';
                 }
-            }
+			}
+			if($bandPeriodista == "Periodista"){
+				$sqlPeriodista = "INSERT INTO periodista (id, id_usuario) ";
+                $sqlPeriodista .= "VALUES ('$usuario','$usuario')";
+                if (insertDB($sqlPeriodista)) {
+                    //header('Location: login.php');
+                    $message = 'Insertado en periodista';
+                } else {
+                    $message = 'Error en periodista';
+				}
+				if($banderaVal == "Valido"){
+					$sqlVal = "INSERT INTO valido (id, id_periodista, id_periodico, cedula) ";
+					$sqlVal .= "VALUES ('$usuario','$usuario','$id_periodico','$cedula')";
+					if (insertDB($sqlVal)) {
+						//header('Location: login.php');
+						$message = 'Insertado en valido';
+					} else {
+						$message = 'Error en valido';
+					}
+				}else{
+					$message="no entre en valido";
+				}
+				if($banderaNoVal=="No valido"){
+					$sqlVal = "INSERT INTO invalido (id, id_periodista, num_publicaciones) ";
+					$sqlVal .= "VALUES ('$usuario','$usuario','$publicaciones')";
+					if (insertDB($sqlVal)) {
+						//header('Location: login.php');
+						$message = 'Insertado en invalido';
+					} else {
+						$message = 'Error en invalido';
+					}
+				}
+
+			}
         } else {
+
             $message = 'Las contrasenas no coinciden';
         }
     }
@@ -42,7 +86,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<title>Sign Up</title>
 	<meta charset="UTF-8">
@@ -75,7 +119,7 @@
 	
 	<div class="container-login100" style="background-image: url('/images/bg-01.jpg');">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-			<form class="login100-form validate-form">
+			<div class="login100-form validate-form">
 				<span class="login100-form-title p-b-37">
 					Sign up
 				</span>
@@ -85,7 +129,8 @@
 				<?php if (!empty($message)) : ?>
 					<p> <?= $message ?></p>
 				<?php endif; ?>
-                    <form action="sign_up.php" method="POST">
+					<form action="sign_up.php" method="POST" enctype="multipart/form-data">
+						
                         <input class="input100" name="usuario" type="text" placeholder="Usuario" required value="">
 						<input class="input100" name="nombre" type="text" placeholder="Nombre" required value="">
                         <input class="input100" name="ape_pat" type="text" placeholder="Apellido Paterno" required value="">
@@ -98,14 +143,21 @@
 						<br>
 						
 						<input class="input100" name="us" type="text" placeholder="Tipo de Usuario:" disabled>
-						<input type="checkbox" id="lectorCheck" name="lector" value="Lector">Lector
-						<input type="checkbox" id="periodistaCheck" name="periodista" value="Periodista">Periodista
+						<input type="checkbox" id="lectorCheck" name="lector" value="Lector">  Lector
+						<input type="checkbox" id="periodistaCheck" name="periodista" value="Periodista">  Periodista
 
 						<div id="lector">
 						
 						</div>
 						<div id="periodista">
+						
+						</div>
+						<div id="valido">
 
+						</div>
+						<div id="invalido">
+							
+						
 						</div>
 
 						<br>
@@ -135,7 +187,7 @@
 						Sign Up
 					</a>
 				</div>
-			</form>
+				</div>
 
 			
 		</div>
@@ -163,20 +215,21 @@
 <!--<script src="/js/login1.js"></script>===============================================================================================-->
 	
 	<script>
-	
+		
 		var band=0;
 		const checkbox1 = $("#lectorCheck");
 		const checkbox2 = $("#periodistaCheck");
-
+		
 
 		checkbox1.change(function(event) {
 			
 			if (event.target.checked) {
-				alert("entre");
+				//alert("entre");
 				document.getElementById("periodista").innerHTML="";	
 				var contenido=document.getElementById("lector");
-				contenido.innerHTML+='<input class="input100" name="banderaLector" type="text" value="Lector"  disabled>'
+				contenido.innerHTML+='<input class="input100" name="banderaLector" type="text" value="Lector"  required>'
 				contenido.innerHTML+='<input class="input100" name="estado" type="text" placeholder="Estado favorito" required>';	
+				
 			} else {
 				document.getElementById("lector").innerHTML="";
 			}
@@ -184,25 +237,54 @@
 		checkbox2.change(function(event) {
 			
 			if (event.target.checked) {
-				alert("entre");
+				//alert("entre");
 				document.getElementById("lector").innerHTML="";
+				var contenido=document.getElementById("periodista");
+				contenido.innerHTML='<input class="input100" name="usu" type="text" placeholder="Tipo de Periodista:" disabled>'+
+							'<p>Nota: Un periodista valido es aquel que cuenta con experiencia en el rubro, ademas de contar con un '+
+							'documento que lo avale. <br> Un periodista no valido no cuenta con experiencia y por ende '+
+							'no cuenta con ningun documento que lo avale.</p>'+
+							'<input class="input100" name="banderaPeriodista" type="text" value="Periodista"  required>'+
+							'<input type="checkbox" id="validoCheck" name="valido" value="Valido"> Valido  '+
+							'<input type="checkbox" id="invalidoCheck" name="invalido" value="Invalido"> No valido  ';
+							const validoCheck=$("#validoCheck");
+							const invalidoCheck=$("#invalidoCheck");
+							validoCheck.change(function (event){
+								if(event.target.checked){
+									//alert("entre valido")
+									document.getElementById("invalido").innerHTML="";
+									var contenidoVal=document.getElementById("valido");
+									contenidoVal.innerHTML='<br><p> <b> Sera necesario preguntar al periodico en el que '+
+										'se trabaja para que le puedan brindar el id del periodico </b> </p>'+
+										'<input class="input100" name="banderaValido" type="text" value="Valido"  required>'+
+										'<input class="input100" name="idPeriodico" type="number" placeholder="Id del Periodico" required value="">'+
+										'<input class="input100" name="cedula" type="text" placeholder="Cedula" required value="">';
+								}else{
+									document.getElementById("valido").innerHTML="";
+								}
+
+							});
+							invalidoCheck.change(function (event){
+								if(event.target.checked){
+									//alert("entre invalido")
+									document.getElementById("valido").innerHTML="";
+									var contenidoInval=document.getElementById("invalido");
+									contenidoInval.innerHTML='<input class="input100" name="banderaInvalido" type="text" placeholder="No valido" required value="No valido">'+
+										'<input class="input100" name="publicaciones" type="number" placeholder="N° de publicaciones" required value="">';
+
+								}else{
+									document.getElementById("invalido").innerHTML="";
+								}
+
+							});
+
 			} else {
+				docuemnt.getElementById("periodista").innerHTML="";
 				//Checkbox has been unchecked
 			}
 		});
-		
 
-		function fun_lector(){
-			band=1;
-			alert("entre")
-			document.getElementById("periodista").innerHTML="";	
-			
-		}
-		function fun_periodista(){
-			band=2;
-			
-			document.getElementById("lector").innerHTML="";
-		}
+		
 	</script>
 
 </body>
