@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,6 +29,11 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
+      <?php if (isset($_SESSION["user_id"])) { ?> 
+        <div class="nav-link">
+          <a href="logout.php" style="color: white;" class="btn btn-default btn-flat">Sign out</a>
+        </div>
+      <?php } ?>
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>

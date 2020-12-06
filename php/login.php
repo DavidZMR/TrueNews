@@ -1,3 +1,44 @@
+<?php
+
+  session_start();
+
+  if (isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+  }
+  require 'databaseLogin.php';
+
+  if (!empty($_POST['username']) && !empty($_POST['pass'])) {
+    $records = $conn->prepare('SELECT id, nombres,correo, pass FROM usuario WHERE correo = :username');
+    $records->bindParam(':username', $_POST['username']);
+    $records->execute();
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+
+    $message = $_POST['pass'];
+
+    if (count($results) > 0 && ($_POST['pass'] == $results['pass'])) {
+		$_SESSION['user_id'] = $results['id'];
+		$band=$conn->prepare('SELECT id from valido where id=:id');
+		$band->bindParam(':id', $results['id']);
+		$band->execute();
+		$res= $band->fetch(PDO::FETCH_ASSOC);
+		// $bandera=$conn->prepare('SELECT id FROM usuario u inner join periodista p on u.id=p.id inner join valido v on p.id=v.id where v.id=:id');
+		// $bandera->bindParam(':id', $results['id']);
+		// $bandera->execute();
+		// $res= $bandera->fetch(PDO::FETCH_ASSOC);
+		if(count($res)>0 && $results['id']==$res['id']){
+			$message="es valido";
+			$_SESSION['bandUsuario']=true;
+		}else{
+			$message="invalido";
+			$_SESSION['bandUsuario']=false;
+		}
+        //header("Location: index.php");
+    } else {
+      //$message = 'Perdón, ingrese nuevamente sus datos, el correo o la contraseña no coinciden';
+    }
+  }
+  
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,28 +70,31 @@
 </head>
 <body>
 <?php include("includes/navbar.php"); ?>
+<?php if (!empty($message)) : ?>
+					<p> <?= $message ?></p>
+				<?php endif; ?>
 	
 	<div class="container-login100" style="background-image: url('/images/bg-01.jpg');">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-			<form class="login100-form validate-form">
+			<form class="login100-form" action="login.php" method="POST" enctype="multipart/form-data">
 				<span class="login100-form-title p-b-37">
 					Sign In
 				</span>
 
-				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-					<input class="input100" type="text" name="username" placeholder="username or email">
+				<div class="wrap-input100 validate-input m-b-20" >
+					<input class="input100" type="text" name="username" placeholder="Usuario">
 					<span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input m-b-25" data-validate = "Enter password">
+				<div class="wrap-input100 validate-input m-b-25">
 					<input class="input100" type="password" name="pass" placeholder="password">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">
-						Sign In
-					</button>
+					
+					<input class="login100-form-btn" type="submit" value="Enviar">
+					
 				</div>
 
 				<div class="text-center p-t-57 p-b-20">
