@@ -1,5 +1,5 @@
 <?php 
-    session_start();
+    
     include 'conexionMYSQL.php';
     $conn = conexion();
 
@@ -25,7 +25,8 @@
                     <form action="new_noticia.php" method="POST" enctype="multipart/form-data">
                         <input type="text" placeholder="Titulo" name="titulo" id="titulo" requierd value=""><br>
                         <input type="date" placeholder="Fecha" name="fecha" id="fecha" required value=""><br>
-                        <input type="text" placeholder="Descripcion" name="descripcion" id="descripcion" required value=""><br>
+                        
+                        <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="descripcion"></textarea><br>
                         <label for="categoria">Categoria: </label>
                         <select name="categoria" id="categoria">
                             <option value="Criminal">Criminal</option>

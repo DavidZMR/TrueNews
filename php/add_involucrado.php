@@ -29,7 +29,7 @@
                     
                 </div>
                 <div class="row">
-                    <button onclick="salir()">Crear</button>
+                    <button onclick="salir();">Crear</button>
                 </div>
                 </fieldset>
             
@@ -39,9 +39,8 @@
     <?php include 'includes/footer1.php'?>
 </body>
 </html>
-<?php
-function salir(){
-    header("Location: index.php");
-}
-
-?>
+<script>
+    function salir(){
+        location.href = "index.php";
+    }
+</script>
