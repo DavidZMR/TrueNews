@@ -136,7 +136,7 @@ echo "Connected successfully";
 	
 	<div class="container-login100" style="background-image: url('/images/bg-01.jpg');">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-			<div class="login100-form validate-form">
+			<!-- <div class="login100-form validate-form"> -->
 				<span class="login100-form-title p-b-37">
 					Sign up
 				</span>
