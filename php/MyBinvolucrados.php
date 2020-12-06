@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/invo.css">
 </head>
 <body>
     <?php include 'includes/navbar.php'?>
@@ -22,11 +22,11 @@
                 while($mostrar = mysqli_fetch_array($res)){
                     ?>
                     <div class="row">
-                        <div class="col-sm-5">
-                            <h4><?php echo $mostrar['nombres']; ?></h4>
-                            <p><?php echo $mostrar['ap_pa']; ?></p>
-                            <p><?php echo $mostrar['ap_ma']; ?></p>
-                            <p><?php echo $mostrar['edad']; ?></p>
+                        <div class="col-sm-12 cont mt-5">
+                            <h4><label for="">Nombres: </label> <?php echo $mostrar['nombres']; ?></h4>
+                            <p><label for="">Apellido paterno:</label> <?php echo $mostrar['ap_pa']; ?></p>
+                            <p><label for="">Apellido materno: </label> <?php echo $mostrar['ap_ma']; ?></p>
+                            <p><label for="">Edad: </label> <?php echo $mostrar['edad']; ?></p>
                             <button onclick="modificar(<?php echo $mostrar['id']?>)">Modificar</button><button onclick="eliminar(<?php echo $mostrar['id']?>)">Eliminar</button>
                         </div>
                     </div>

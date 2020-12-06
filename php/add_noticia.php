@@ -12,12 +12,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/agregar.css">
     
 </head>
 <body>
     <?php include 'includes/navbar.php'?>
         <div class="container">
             <div class="col">
+            <div class="col contenedor">
+                
                 <div class="row">
                     <h1>Agregar Nueva Noticia.</h1> <br>
                 </div>
@@ -53,7 +56,7 @@
 
                     </form>
                 </div>
-                
+                </div>  
             </div>
         </div>
 

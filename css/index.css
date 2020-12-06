@@ -1,5 +1,5 @@
 .row-full{
-    width: 100vw;
+    width: 99.45vw;
     position: relative;
     margin-left: -50vw;
     height: auto;
@@ -19,4 +19,30 @@
     align-items: center;
     position: relative;
     color: white;
+}
+.img_noticia{
+    min-width: 100%;
+    border-right: 2px solid black;
+    padding: 3px;
+    align-items: center;
+}
+.contorno{
+    border: 2px solid black;
+    border-color: black;
+} 
+.titulos{
+    text-align: center;
+    font-family: sans-serif;
+    color: rgb(2, 2, 59);
+}
+p{
+    text-align: center;
+}
+.botones{
+    text-align: center;
+    
+}
+button{
+    margin-right: 3px;
+    
 }

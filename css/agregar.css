@@ -1,0 +1,14 @@
+.contenedor{
+    
+    width: 100%;
+    align-content: center;
+}
+input{
+    width: 75vw;
+}
+.row{
+    align-content: center;
+}
+textarea{
+    width: 75vw;
+}
