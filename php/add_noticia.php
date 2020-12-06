@@ -1,20 +1,7 @@
 <?php 
     session_start();
     include 'conexionMYSQL.php';
-    $sql = "SELECT id from noticia LAST_INSERT_ID ()";
     $conn = conexion();
-    $ultimo_id_noticia=mysqli_query($conn,$sql);
-    $ultimo_id_noticia+=1;
-    $_SESSION['id_noticia']=$ultimo_id_noticia;
-
-    $sql = "SELECT id from lugar LAST_INSERT_ID ()";
-    $conn = conexion();
-    $ultimo_id_lugar=mysqli_query($conn,$sql);
-    $ultimo_id_lugar+=1;
-    $_SESSION['id_lugar']=$ultimo_id_lugar;
-
-    echo $ultimo_id_noticia;
-    echo $ultimo_id_lugar;
 
     
 ?>
@@ -51,7 +38,7 @@
                         <label for="">Lugar</label><br>
                         <input type="text" placeholder="Pais" name="pais" id="pais" required value=""><br>
                         <input type="text" placeholder="Ciudad" name="ciudad" id="ciudad" required value=""><br>
-                        <input type="text" placeholder="Municipio" name="munucipio" id="municipio" required value=""><br>
+                        <input type="text" placeholder="Municipio" name="municipio" id="municipio" required value=""><br>
                         <input type="text" placeholder="Colonia" id="colonia" name="colonia" required value=""><br>
                         <input type="text" placeholder="Calle" name="calle" id="calle" required value=""><br>
                         <input type="number" placeholder="Numero" id="numero" name="numero" required value=""><br>

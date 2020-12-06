@@ -1,10 +1,10 @@
 <?php   
     function conexion() {
-        $servidor = 'localhost';
+        $servidor = '127.0.0.1';
         $cuenta = 'root';
         $password = '';
         $bd = 'truenews';
-        $conexion = mysqli_connect($servidor, $cuenta, $password, $bd);
+        $conexion = new mysqli($servidor, $cuenta, $password, $bd);
         if ($conexion->connect_errno) {
             die('Error en la conexion');
         } else {
@@ -22,7 +22,7 @@
     
     function insertDB($sql) {
         $conexion = conexion();
-        $conexion->query($conexion,$sql);
+        $conexion->query($sql);
         $r = $conexion->affected_rows >= 1;
         mysqli_close($conexion);
         return $r;

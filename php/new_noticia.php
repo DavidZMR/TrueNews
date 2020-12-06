@@ -19,8 +19,7 @@ if (mysqli_query($conn, $sql)) {
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }*/
-$id_noticia=$_SESSION['id_noticia'];
-$id_lugar = $_SESSION['id_lugar'];
+
 $fecha = $_POST['fecha'];
 $descripcion = $_POST['descripcion'];
 $categoria = $_POST['categoria'];
@@ -31,13 +30,13 @@ $colonia = $_POST['colonia'];
 $calle = $_POST['calle'];
 $numero = $_POST['numero'];
 $titulo = $_POST["titulo"];
-$nombres = $_POST['nombres'];
-$ap_pa = $_POST['ap_pa'];
-$ap_ma = $_POST['ap_ma'];
-$edad = $_POST['edad'];
+
 
 $sql = "INSERT INTO lugar(pais,ciudad,municipio,colonia,calle,numero) VALUES ('$pais','$ciudad','$municipio','$colonia','$calle','$numero')";
 mysqli_query($conn,$sql);
+
+$id_lugar=mysqli_insert_id($conn);
+
 
 //$sql = "INSERT INTO noticia(id_lugar,id_periodista,fecha,descripcion,img,categoria,titulo) VALUES ('2','2','02/02/2020','a','a','a','a')";
 //$sql = "INSERT INTO involucrado(id,nombres,ap_pa,ap_ma,edad) VALUES ('2','$titulo','a','a','$edad')";
@@ -78,8 +77,17 @@ else
    //si existe la variable pero se pasa del tamaño permitido
    if($nombre_img == !NULL) echo "La imagen es demasiado grande ";
 }
-$imagen = $directorio.$nombre_img;
-
+$imagen = "/images/".$nombre_img;
+$sql = "INSERT INTO noticia(id_lugar,id_periodista,fecha,descripcion,img,categoria,titulo) VALUES ('$id_lugar','5','$fecha','$descripcion','$imagen','$categoria','$titulo')";
+if(mysqli_query($conn,$sql)){
+    session_start();
+    $id_noticia=mysqli_insert_id($conn);
+    $_SESSION['id_noticia']=$id_noticia;
+}else{
+    
+    echo mysqli_error($conn);
+    
+}
 mysqli_close($conn);
-//header("Location: add_involucrado.php ")
+header("Location: add_involucrado.php ")
 ?>
