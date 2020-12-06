@@ -1,16 +1,5 @@
 <?php
 	require 'conexionMYSQL.php';
-	$servername = "localhost";
-$database = "truenews";
-$username = "root";
-$password = "";
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $database);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-echo "Connected successfully";
 	$message = '';
 	$usuario = isset($_POST['usuario']) ? $_POST['usuario'] : "";
 	$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : "";
@@ -36,8 +25,6 @@ echo "Connected successfully";
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
         if ($_POST['password'] == $_POST['confirm_password']) {
             $password = $_POST['password'];
-            $sql = "INSERT INTO usuario(id,nombres,ap_pa,ap_ma,edad,correo,tel,pass) VALUES ('$usuario', '$nombre', '$ape_pat', '$ape_mat', '$fecha','$email', '$telefono','$password')";
-			mysqli_query($conn,$sql);
             $sql = "INSERT INTO usuario(id,nombres,ap_pa,ap_ma,edad,correo,tel,pass) ";
             $sql .= "VALUES('$usuario', '$nombre', '$ape_pat', '$ape_mat', '$fecha','$email', '$telefono','$password')";
             if (insertDB($sql)) {
@@ -46,11 +33,7 @@ echo "Connected successfully";
             } else {
                 $message = 'Error en usuario';
             }
-
-            if ($bandLector == 'Lector'){
-                $sqlLector = "INSERT INTO lector (id, id_usuario, estado)";
-				$sqlLector .= " VALUES ('$usuario','$usuario','$estado')";
-			}
+			
             if ($bandLector == "Lector"){
                 $sqlLector = "INSERT INTO lector (id, id_usuario, estado) ";
                 $sqlLector .= "VALUES ('$usuario','$usuario','$estado')";
@@ -146,8 +129,7 @@ echo "Connected successfully";
 				<?php if (!empty($message)) : ?>
 					<p> <?= $message ?></p>
 				<?php endif; ?>
-                    
-					<form action="sign_up.php" method="POST" enctype="multipart/form-data">
+					<form action="sign_up.php" method="POST" enctype="multipart/form-data" class="login100-form">
 						
                         <input class="input100" name="usuario" type="text" placeholder="Usuario" required value="">
 						<input class="input100" name="nombre" type="text" placeholder="Nombre" required value="">
@@ -205,9 +187,7 @@ echo "Connected successfully";
 						Sign Up
 					</a>
 				</div>
-			</div>
-
-			
+			<!-- </div> -->
 		</div>
 	</div>
 	
