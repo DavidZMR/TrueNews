@@ -77,12 +77,14 @@ else
    //si existe la variable pero se pasa del tamaño permitido
    if($nombre_img == !NULL) echo "La imagen es demasiado grande ";
 }
+session_start();
+$periodista = $_SESSION['id'];
 $imagen = "/images/".$nombre_img;
-$sql = "INSERT INTO noticia(id_lugar,id_periodista,fecha,descripcion,img,categoria,titulo) VALUES ('$id_lugar','5','$fecha','$descripcion','$imagen','$categoria','$titulo')";
+$sql = "INSERT INTO noticia(id_lugar,id_periodista,fecha,descripcion,img,categoria,titulo) VALUES ('$id_lugar','$periodista','$fecha','$descripcion','$imagen','$categoria','$titulo')";
 if(mysqli_query($conn,$sql)){
-    session_start();
     $id_noticia=mysqli_insert_id($conn);
     $_SESSION['id_noticia']=$id_noticia;
+
 }else{
     
     echo mysqli_error($conn);
