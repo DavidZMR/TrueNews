@@ -1,10 +1,15 @@
 <?php 
 
 $id = $_GET['id'];
-$_SESSION['id_involucrado'] = $id;
+echo $id;
+session_start();
+$_SESSION["identificador"]=$id;
 
+$_SESSION['aux'] = $id;
+echo $_SESSION['aux'];
 include 'conexionMYSQL.php';
 $conn = conexion();
+
 $sql = "SELECT * FROM involucrado WHERE id = '$id'";
 $res = mysqli_query($conn,$sql);
 $involucrado = mysqli_fetch_array($res);
@@ -23,7 +28,7 @@ $involucrado = mysqli_fetch_array($res);
         <div class="col-12 ">
             
                 <fieldset>
-                <legend class="">Agregar involucrados</legend><br>
+                <legend class="">Editar involucrados</legend><br>
             
                 <div class="row">
                     <form class="form-horizontal" action="alter_involucrado.php" method="POST">

@@ -14,9 +14,10 @@
             <?php
                 include 'conexionMYSQL.php';
                 $conn = conexion();
-                $periodista = $_SESSION['id'];
+                $periodista = $_SESSION['user_id']; 
                 $sql = "SELECT * FROM noticia WHERE id_periodista = '$periodista'";
                 $res = mysqli_query($conn,$sql);
+                
                 while($mostrar = mysqli_fetch_array($res)){
                     
                     ?>
@@ -29,7 +30,7 @@
                             <h4><?php echo $mostrar['titulo']; ?></h4>
                             <p><?php echo $mostrar['descripcion']; ?></p>
                             <p><?php echo $mostrar['fecha']; ?></p>
-                            <button onclick="modificar(<?php echo $mostrar['id']?>)">Modificar</button><button onclick="eliminar(<?php echo $mostrar['id']?>)">Eliminar</button>
+                            <button onclick="modificar(<?php echo $mostrar['id'];?>,<?php echo $mostrar['id_lugar']?>)">Modificar</button><button onclick="eliminar(<?php echo $mostrar['id']?>)">Eliminar</button>
                             <button onclick="involucrados(<?php echo $mostrar['id']?>)">Editar Involucrados</button>
                         </div>
                     </div>
@@ -65,7 +66,8 @@
     function involucrados(id){
         location.href = "MyBinvolucrados.php?id="+id;
     }
-    function modificar(id){
-        location.href = "modificarNoticia.php?id="+id;
+    function modificar(id, id_lugar){
+        
+        location.href = "modificarNoticia.php?id="+id+"&id_lugar="+id_lugar;
     }
 </script>

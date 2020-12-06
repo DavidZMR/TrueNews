@@ -78,7 +78,7 @@ else
    if($nombre_img == !NULL) echo "La imagen es demasiado grande ";
 }
 session_start();
-$periodista = $_SESSION['id'];
+$periodista = $_SESSION['user_id'];
 $imagen = "/images/".$nombre_img;
 $sql = "INSERT INTO noticia(id_lugar,id_periodista,fecha,descripcion,img,categoria,titulo) VALUES ('$id_lugar','$periodista','$fecha','$descripcion','$imagen','$categoria','$titulo')";
 if(mysqli_query($conn,$sql)){

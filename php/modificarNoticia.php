@@ -3,15 +3,17 @@
     include 'conexionMYSQL.php';
     $conn = conexion();
     $id = $_GET['id'];
+    $id_lugar = $_GET['id_lugar'];
     $sql = "SELECT * FROM noticia Where id = '$id' ";
     $res = mysqli_query($conn,$sql);
     $noticia = mysqli_fetch_array($res);
-    $id_lugar = $noticia['id_lugar'];
+    //$id_lugar = $noticia['id_lugar'];
     $sql = "SELECT * FROM lugar WHERE id = '$id_lugar'";
     $res = mysqli_query($conn,$sql);
     $lugar = mysqli_fetch_array($res);
-    $_SESSION['id_lugar'] = $id_lugar;
+    $_SESSION['id_aux'] = $id_lugar;
     $_SESSION['id_noticia'] = $id;
+    
     
 ?>
 
