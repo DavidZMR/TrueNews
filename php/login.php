@@ -16,8 +16,9 @@
     $message = $_POST['pass'];
 
     if (count($results) > 0 && ($_POST['pass'] == $results['pass'])) {
+		$_SESSION['bandLector']=false;
 		$_SESSION['user_id'] = $results['id'];
-		$band=$conn->prepare('SELECT id from valido where id=:id');
+		$band = $conn->prepare('SELECT id from valido where id=:id');
 		$band->bindParam(':id', $results['id']);
 		$band->execute();
 		$res= $band->fetch(PDO::FETCH_ASSOC);
@@ -25,12 +26,21 @@
 		// $bandera->bindParam(':id', $results['id']);
 		// $bandera->execute();
 		// $res= $bandera->fetch(PDO::FETCH_ASSOC);
-		if(count($res)>0 && $results['id']==$res['id']){
+		if(/*count($res)>0 &&*/ $results['id']==$res['id']){
 			$message="es valido";
 			$_SESSION['bandUsuario']=true;
 		}else{
-			$message="invalido";
-			$_SESSION['bandUsuario']=false;
+			$band = $conn->prepare('SELECT id from invalido where id=:id');
+			$band->bindParam(':id', $results['id']);
+			$band->execute();
+			$res= $band->fetch(PDO::FETCH_ASSOC);
+            if (/*count($res)>0 &&*/ $results['id']==$res['id']) {
+                $message="invalido";
+                $_SESSION['bandUsuario']=false;
+            }else{
+				$message="lector";
+				$_SESSION['bandLector']=true;
+			}
 		}
         //header("Location: index.php");
     } else {

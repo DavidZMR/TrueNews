@@ -29,6 +29,14 @@ session_start();
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
+    <?php if( isset($_SESSION['bandLector']) && $_SESSION['bandLector']==true ){?>
+        <a href="add_noticia.php" style="color: white;" class="btn btn-default btn-flat">Membresia</a>
+      <?php } ?>
+      <?php if(isset ($_SESSION['bandUsuario'])){?>
+        <a href="add_noticia.php" style="color: white;" class="btn btn-default btn-flat">Agregar noticia</a>
+        <a href="MyBnoticias.php" style="color: white;" class="btn btn-default btn-flat">Editar noticia</a>
+      <?php } ?>
+      
       <?php if (isset($_SESSION["user_id"])) { ?> 
         <div class="nav-link">
           <a href="logout.php" style="color: white;" class="btn btn-default btn-flat">Sign out</a>
@@ -44,3 +52,4 @@ session_start();
     <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php  ?>
