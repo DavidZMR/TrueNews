@@ -17,7 +17,9 @@
                 $id= $_GET['id'];
                 $_SESSION['id_aux'] = $id;
                 echo $id;
-                $sql = "SELECT i.id, i.ap_pa, i.nombres, i.edad, i.ap_ma FROM involucrado i LEFT JOIN se_involucra s on s.id_involucrado = i.id  LEFT JOIN noticia n on n.id = s.id_noticia where n.id = '$id'";
+                $sql = "SET @MyVariable='$id'";
+                $res = mysqli_query($conn,$sql);
+                $sql = "SELECT * FROM esta_involucrado ";
                 $res = mysqli_query($conn,$sql);
                 while($mostrar = mysqli_fetch_array($res)){
                     ?>

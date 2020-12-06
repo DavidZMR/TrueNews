@@ -43,7 +43,7 @@
             <?php
                 include 'conexionMYSQL.php';
                 $conn = conexion();
-                $sql = "SELECT * FROM noticia order by fecha desc";
+                $sql = "SELECT * FROM all_noticias";
                 $res = mysqli_query($conn,$sql);
                 while($mostrar = mysqli_fetch_array($res)){
                     ?>
