@@ -119,7 +119,7 @@
 	
 	<div class="container-login100" style="background-image: url('/images/bg-01.jpg');">
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-			<div class="login100-form validate-form">
+			<!-- <div class="login100-form validate-form"> -->
 				<span class="login100-form-title p-b-37">
 					Sign up
 				</span>
@@ -129,7 +129,7 @@
 				<?php if (!empty($message)) : ?>
 					<p> <?= $message ?></p>
 				<?php endif; ?>
-					<form action="sign_up.php" method="POST" enctype="multipart/form-data">
+					<form action="sign_up.php" method="POST" enctype="multipart/form-data" class="login100-form">
 						
                         <input class="input100" name="usuario" type="text" placeholder="Usuario" required value="">
 						<input class="input100" name="nombre" type="text" placeholder="Nombre" required value="">
@@ -187,9 +187,7 @@
 						Sign Up
 					</a>
 				</div>
-				</div>
-
-			
+			<!-- </div> -->
 		</div>
 	</div>
 	
