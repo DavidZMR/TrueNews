@@ -114,6 +114,7 @@
 				</div>
 
 				<div class="text-center">
+					<a href="/php/sign_in.php" class="txt2 hov1">
 					<a href="sign_up.php" class="txt2 hov1">
 						Sign Up
 					</a>
@@ -127,7 +128,7 @@
 	
 
     <div id="dropDownSelect1"></div>
-    <?php include("includes/footer.php"); ?>
+    <?php include("includes/footer1.php"); ?>
 	
 <!--===============================================================================================-->
 	<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
