@@ -3,15 +3,21 @@
     include 'conexionMYSQL.php';
     $conn = conexion();
     $id = $_GET['id'];
-    $sql = "SELECT * FROM noticia Where id = '$id' ";
+    $id_lugar = $_GET['id_lugar'];
+    $sql = "SET @MyVariable:= '$id'";
+    $res = mysqli_query($conn,$sql);
+    $sql = "SELECT * FROM get_noticia ";
     $res = mysqli_query($conn,$sql);
     $noticia = mysqli_fetch_array($res);
-    $id_lugar = $noticia['id_lugar'];
-    $sql = "SELECT * FROM lugar WHERE id = '$id_lugar'";
+    //$id_lugar = $noticia['id_lugar'];
+    $sql = "SET @MyVariable:= '$id_lugar'";
+    $res = mysqli_query($conn,$sql);
+    $sql = "SELECT * FROM get_lugar";
     $res = mysqli_query($conn,$sql);
     $lugar = mysqli_fetch_array($res);
-    $_SESSION['id_lugar'] = $id_lugar;
+    $_SESSION['id_aux'] = $id_lugar;
     $_SESSION['id_noticia'] = $id;
+    
     
 ?>
 
@@ -21,6 +27,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/agregar.css">
     
 </head>
 <body>
@@ -28,7 +35,7 @@
         <div class="container">
             <div class="col">
                 <div class="row">
-                    <h1>Agregar Nueva Noticia.</h1> <br>
+                    <h1>Modificar Noticia.</h1> <br>
                 </div>
                 <div class="row">
                     <form action="alter_noticia.php" method="POST" enctype="multipart/form-data">

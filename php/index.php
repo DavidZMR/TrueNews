@@ -43,18 +43,19 @@
             <?php
                 include 'conexionMYSQL.php';
                 $conn = conexion();
-                $sql = "SELECT * FROM noticia";
+                $sql = "SELECT * FROM all_noticias";
                 $res = mysqli_query($conn,$sql);
                 while($mostrar = mysqli_fetch_array($res)){
                     ?>
-                    <div class="row">
+                    <div class="row mt-5 contorno">
                         <div class="col-sm-7">
-                            <img style="min-width: max-content; min-height: max-content;" src="<?php echo $mostrar['img'];?>" alt="">
+                            <img class="img_noticia" src="<?php echo $mostrar['img'];?>" alt="">
                         </div>
                         <div class="col-sm-5">
-                            <h4><?php echo $mostrar['titulo']; ?></h4>
-                            <p><?php echo $mostrar['descripcion']; ?></p>
+                            <h2 class="titulos"><?php echo $mostrar['titulo']; ?></h2>
                             <p><?php echo $mostrar['fecha']; ?></p>
+                            <p><?php echo $mostrar['descripcion']; ?></p>
+                            
                         </div>
                     </div>
             <?php

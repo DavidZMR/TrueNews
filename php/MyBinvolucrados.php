@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/invo.css">
 </head>
 <body>
     <?php include 'includes/navbar.php'?>
@@ -15,17 +15,20 @@
                 include 'conexionMYSQL.php';
                 $conn = conexion();
                 $id= $_GET['id'];
+                $_SESSION['id_aux'] = $id;
                 echo $id;
-                $sql = "SELECT * FROM involucrado i LEFT JOIN se_involucra s on s.id_involucrado = i.id  LEFT JOIN noticia n on n.id = s.id_noticia where n.id = '$id'";
+                $sql = "SET @MyVariable='$id'";
+                $res = mysqli_query($conn,$sql);
+                $sql = "SELECT * FROM esta_involucrado ";
                 $res = mysqli_query($conn,$sql);
                 while($mostrar = mysqli_fetch_array($res)){
                     ?>
                     <div class="row">
-                        <div class="col-sm-5">
-                            <h4><?php echo $mostrar['nombres']; ?></h4>
-                            <p><?php echo $mostrar['ap_pa']; ?></p>
-                            <p><?php echo $mostrar['ap_ma']; ?></p>
-                            <p><?php echo $mostrar['edad']; ?></p>
+                        <div class="col-sm-12 cont mt-5">
+                            <h4><label for="">Nombres: </label> <?php echo $mostrar['nombres']; ?></h4>
+                            <p><label for="">Apellido paterno:</label> <?php echo $mostrar['ap_pa']; ?></p>
+                            <p><label for="">Apellido materno: </label> <?php echo $mostrar['ap_ma']; ?></p>
+                            <p><label for="">Edad: </label> <?php echo $mostrar['edad']; ?></p>
                             <button onclick="modificar(<?php echo $mostrar['id']?>)">Modificar</button><button onclick="eliminar(<?php echo $mostrar['id']?>)">Eliminar</button>
                         </div>
                     </div>

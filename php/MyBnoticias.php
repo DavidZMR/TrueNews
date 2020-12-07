@@ -14,23 +14,26 @@
             <?php
                 include 'conexionMYSQL.php';
                 $conn = conexion();
-                $periodista = $_SESSION['id'];
-                $sql = "SELECT * FROM noticia WHERE id_periodista = '$periodista'";
+                $periodista = $_SESSION['user_id']; 
+                $sql = "SELECT * FROM noticia WHERE id_periodista = '$periodista' order by fecha desc";
                 $res = mysqli_query($conn,$sql);
+                
                 while($mostrar = mysqli_fetch_array($res)){
                     
                     ?>
                     
-                    <div class="row">
+                    <div class="row contorno mt-5">
                         <div class="col-sm-7">
-                            <img style="min-width: max-content; min-height: max-content;" src="<?php echo $mostrar['img'];?>" alt="">
+                            <img class="img_noticia" src="<?php echo $mostrar['img'];?>" alt="">
                         </div>
                         <div class="col-sm-5">
-                            <h4><?php echo $mostrar['titulo']; ?></h4>
+                            <h2 class="titulos"><?php echo $mostrar['titulo']; ?></h2>
                             <p><?php echo $mostrar['descripcion']; ?></p>
                             <p><?php echo $mostrar['fecha']; ?></p>
-                            <button onclick="modificar(<?php echo $mostrar['id']?>)">Modificar</button><button onclick="eliminar(<?php echo $mostrar['id']?>)">Eliminar</button>
-                            <button onclick="involucrados(<?php echo $mostrar['id']?>)">Editar Involucrados</button>
+                            <div class="botones">
+                            <button class="mr-3" onclick="modificar(<?php echo $mostrar['id'];?>,<?php echo $mostrar['id_lugar']?>)">Modificar</button><button class="mr-3" onclick="eliminar(<?php echo $mostrar['id']?>)">Eliminar</button>
+                            <button class="mr-3" onclick="involucrados(<?php echo $mostrar['id']?>)">Editar Involucrados</button>
+                            </div>
                         </div>
                     </div>
             <?php
@@ -65,7 +68,8 @@
     function involucrados(id){
         location.href = "MyBinvolucrados.php?id="+id;
     }
-    function modificar(id){
-        location.href = "modificarNoticia.php?id="+id;
+    function modificar(id, id_lugar){
+        
+        location.href = "modificarNoticia.php?id="+id+"&id_lugar="+id_lugar;
     }
 </script>
