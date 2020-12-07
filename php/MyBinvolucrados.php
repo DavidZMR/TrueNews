@@ -16,11 +16,20 @@
                 $conn = conexion();
                 $id= $_GET['id'];
                 $_SESSION['id_aux'] = $id;
-                echo $id;
+                //echo $id;
                 $sql = "SET @MyVariable='$id'";
                 $res = mysqli_query($conn,$sql);
                 $sql = "SELECT * FROM esta_involucrado ";
                 $res = mysqli_query($conn,$sql);
+                $sql = "SELECT usuario.nombres ,COUNT(*) FROM involucrado
+                INNER JOIN se_involucra on involucrado.id = se_involucra.id_involucrado
+                INNER JOIN noticia on se_involucra.id_noticia = noticia.id 
+                INNER JOIN periodista on noticia.id_periodista = periodista.id 
+                inner join usuario on periodista.id = usuario.id where
+                noticia.id = '$id'";
+                $total = mysqli_fetch_array(mysqli_query($conn,$sql));
+                echo "<h1>El total de involucrados es ".$total['COUNT(*)']." agregados por ".$total['nombres']."</h1>";
+
                 while($mostrar = mysqli_fetch_array($res)){
                     ?>
                     <div class="row">
