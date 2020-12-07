@@ -28,7 +28,7 @@ session_start();
         <a class="nav-link" href="/php/login.php">Sing in/Sing up</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline my-2 my-lg-0" action="buscarNoticia.php" method="POST">
     <?php if( isset($_SESSION['bandLector']) && $_SESSION['bandLector']==true ){?>
         <a href="add_noticia.php" style="color: white;" class="btn btn-default btn-flat">Membresia</a>
       <?php } ?>
@@ -43,7 +43,7 @@ session_start();
           <a href="editarPerfil.php" style="color: white;" class="btn btn-default btn-flat">Editar Perfil</a>
         </div>
       <?php } ?>
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" name="noticiaBuscar" type="text" placeholder="Search" aria-label="Search" required>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>

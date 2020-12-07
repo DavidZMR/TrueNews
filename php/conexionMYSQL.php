@@ -1,6 +1,6 @@
 <?php   
     function conexion() {
-        $servidor = '127.0.0.1';
+        $servidor = 'localhost';
         $cuenta = 'root';
         $password = '';
         $bd = 'truenews';
