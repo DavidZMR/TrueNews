@@ -13,7 +13,7 @@
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
 
-    $message = $_POST['pass'];
+    // $message = $_POST['pass'];
 
     if (count($results) > 0 && ($_POST['pass'] == $results['pass'])) {
 		$_SESSION['bandLector']=false;
@@ -22,10 +22,10 @@
 		$band->bindParam(':id', $results['id']);
 		$band->execute();
 		$res= $band->fetch(PDO::FETCH_ASSOC);
-		// $bandera=$conn->prepare('SELECT id FROM usuario u inner join periodista p on u.id=p.id inner join valido v on p.id=v.id where v.id=:id');
-		// $bandera->bindParam(':id', $results['id']);
-		// $bandera->execute();
-		// $res= $bandera->fetch(PDO::FETCH_ASSOC);
+		 $bandera=$conn->prepare('SELECT id FROM usuario u inner join periodista p on u.id=p.id inner join valido v on p.id=v.id where v.id=:id');
+		 $bandera->bindParam(':id', $results['id']);
+		 $bandera->execute();
+		 $res1= $bandera->fetch(PDO::FETCH_ASSOC);
 		if(/*count($res)>0 &&*/ $results['id']==$res['id']){
 			$message="es valido";
 			$_SESSION['bandUsuario']=true;

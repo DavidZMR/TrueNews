@@ -62,6 +62,27 @@
                 }
 
             ?>
+            </div> <br><br><br>
+            <div class="container">
+                <h5>Total de noticias de nuestros periodistas</h5>
+                <div class="row">
+                    <div class="col-6">
+                        <?php 
+                            $sql = "SELECT COUNT(*) FROM noticia INNER JOIN periodista on noticia.id_periodista = periodista.id INNER JOIN valido on periodista.id = valido.id";
+                            $res = mysqli_query($conn,$sql);
+                            $mostrar = mysqli_fetch_array($res)?>
+                            <h6>Noticias por periodistas validos <?php echo $mostrar[0]?></h6>
+                    </div>
+                    <div class="col-6">
+                        <?php 
+                            
+                            $sql2 = "SELECT COUNT(*) FROM noticia INNER JOIN periodista on noticia.id_periodista = periodista.id INNER JOIN invalido on periodista.id = invalido.id";
+                            $res2 = mysqli_query($conn,$sql2);
+                            $mostrar2 = mysqli_fetch_array($res2)?>
+                            <h6>Noticias por periodistas invalidos <?php echo $mostrar2[0]?></h6>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
