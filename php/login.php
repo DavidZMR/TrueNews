@@ -29,6 +29,7 @@
 		if(/*count($res)>0 &&*/ $results['id']==$res['id']){
 			$message="es valido";
 			$_SESSION['bandUsuario']=true;
+			header('Location: index.php');
 		}else{
 			$band = $conn->prepare('SELECT id from invalido where id=:id');
 			$band->bindParam(':id', $results['id']);
@@ -36,10 +37,12 @@
 			$res= $band->fetch(PDO::FETCH_ASSOC);
             if (/*count($res)>0 &&*/ $results['id']==$res['id']) {
                 $message="invalido";
-                $_SESSION['bandUsuario']=false;
+				$_SESSION['bandUsuario']=false;
+				header('Location: index.php');
             }else{
 				$message="lector";
 				$_SESSION['bandLector']=true;
+				header('Location: index.php');
 			}
 		}
         //header("Location: index.php");

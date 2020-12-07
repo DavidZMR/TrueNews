@@ -40,6 +40,7 @@ session_start();
       <?php if (isset($_SESSION["user_id"])) { ?> 
         <div class="nav-link">
           <a href="logout.php" style="color: white;" class="btn btn-default btn-flat">Sign out</a>
+          <a href="editarPerfil.php" style="color: white;" class="btn btn-default btn-flat">Editar Perfil</a>
         </div>
       <?php } ?>
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

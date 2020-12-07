@@ -8,7 +8,7 @@
         if ($conexion->connect_errno) {
             die('Error en la conexion');
         } else {
-            echo 'Conexion exitosa';
+            //echo 'Conexion exitosa';
             return $conexion;
         }
     }
