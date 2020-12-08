@@ -43,7 +43,10 @@
             <?php
                 include 'conexionMYSQL.php';
                 $conn = conexion();
-                $sql = "SELECT * FROM all_noticias";
+                $cat = $_GET['cat'];
+                $sql = "SET @MyChar:= '$cat'";
+                $res = mysqli_query($conn,$sql);
+                $sql = "SELECT * FROM get_noticia_categoria";
                 $res = mysqli_query($conn,$sql);
                 while($mostrar = mysqli_fetch_array($res)){
                     ?>
