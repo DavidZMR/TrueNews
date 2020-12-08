@@ -87,6 +87,7 @@ require 'conexionMYSQL.php';
                                         
                                         
 									</tr>
+									
 								</thead>
 								<tbody>
 									<tr class="row100 body">
@@ -119,6 +120,36 @@ require 'conexionMYSQL.php';
                                         <td class="cell100 column6"><?php echo $mostrar2['num_publicaciones']?></td>
                                         <?php } ?>
 									</tr>
+									<!-- <tr class="row100 body">
+										<td class="cell100 column6"><input type="text" name="nombres" value="<?php echo $mostrar['nombres']?>"></td>
+										<td class="cell100 column6"><input type="text" name="ap_pa" value="<?php echo $mostrar['ap_pa']?>"></td>
+										<td class="cell100 column6"><input type="text" name="ap_ma" value="<?php echo $mostrar['ap_ma']?>"></td>
+										<td class="cell100 column6"><input type="text" name="edad" value="<?php echo $mostrar['edad']?>"></td>
+										<td class="cell100 column6"><input type="text" name="correo" value="<?php echo $mostrar['correo']?>"></td>
+										<td class="cell100 column6"><input type="text" name="tel" value="<?php echo $mostrar['tel']?>"></td>
+                                        <td class="cell100 column6"><input type="text" name="pass" value="<?php echo $mostrar['pass']?>"></td>
+                                        <?php if( isset($_SESSION['bandLector']) && $_SESSION['bandLector']==true ){ 
+                                            $sql2 = "SELECT * from lector where id= $idusu";
+                                    
+                                            $res2 = mysqli_query($conexion, $sql2);
+                                            $mostrar2 = mysqli_fetch_array($res2);?>
+                                        <td class="cell100 column6"><input type="text" name="estado" value="<?php echo $mostrar2['estado']?>"> </td>
+                                        <?php } ?>
+                                        <?php if(isset ($_SESSION['bandUsuario']) && $_SESSION['bandUsuario']==true){
+                                            $sql2 = "SELECT * from valido where id= $idusu";
+                                    
+                                            $res2 = mysqli_query($conexion, $sql2);
+                                            $mostrar2 = mysqli_fetch_array($res2);?>
+                                        <td class="cell100 column6"><input type="text" name="id_periodico" value="<?php echo $mostrar2['id_periodico']?>"></td>
+                                        <td class="cell100 column6"><input type="text" name="cedula" value="<?php echo $mostrar2['cedula']?>" ></td>
+                                        <?php } ?>
+                                        <?php if(isset ($_SESSION['bandUsuario']) && $_SESSION['bandUsuario']==false){
+                                            $sql2 = "SELECT * from invalido where id= $idusu";
+                                            $res2 = mysqli_query($conexion, $sql2);
+                                            $mostrar2 = mysqli_fetch_array($res2);?>
+                                        <td class="cell100 column6"><input type="text" name="num_publicaciones" value="<?php echo $mostrar2['num_publicaciones']?>"></td>
+                                        <?php } ?>
+									</tr> -->
 								</tbody>
                             </table>
                             
@@ -135,7 +166,7 @@ require 'conexionMYSQL.php';
 
                 </div>
 
-                <h6>Modifica tu usuario</h6>
+                
 			</div>
 		</div>
 	</div>
@@ -175,6 +206,7 @@ require 'conexionMYSQL.php';
 <!--===============================================================================================-->
     <script src="/js/mainEditar.js"></script>
     <script>
+
         function eliminar(){
             
             var id= <?php echo $idusu ?>;
@@ -191,9 +223,10 @@ require 'conexionMYSQL.php';
         }
 
         function modificar(){
-            document.getElementById('contenedor').innerHTML="<h6>Modifica tu usuario</h6>";
+			alert("modificar");
+            document.getElementById('contenedor').innerHTML="<br><br> <h4>Modifica tu usuario</h4>";
             var tabla=document.getElementById("contenedor");
-            tabla.innerHTML='<div class="table100 ver1">'+
+            tabla.innerHTML+='<br><br> <div class="table100 ver1">'+
 					'<div class="table100-firstcol">'+
 						'<table>'+
 							'<thead>'+
@@ -232,20 +265,83 @@ require 'conexionMYSQL.php';
                                         <?php if(isset ($_SESSION['bandUsuario']) && $_SESSION['bandUsuario']==false){?>
                                         '<th class="cell100 column6">Publicaciones</th>'+
                                         <?php } ?>
-                                        
-                                        
 									'</tr>'+
 								'</thead>'+
                              '</table>'+
-                            
 						'</div>'+
 					'</div>'+
                 '</div>';
                 var elemento = document.createElement('tr');
                 elemento.innerHTML +=
+				'<td class="cell100 column6"><input type="text" id="nombres" value="<?php echo $mostrar['nombres']?>"></td>'+
+										'<td class="cell100 column6"><input type="text" id="ap_pa" value="<?php echo $mostrar['ap_pa']?>"></td>'+
+										'<td class="cell100 column6"><input type="text" id="ap_ma" value="<?php echo $mostrar['ap_ma']?>"></td>'+
+										'<td class="cell100 column6"><input type="text" id="edad" value="<?php echo $mostrar['edad']?>"></td>'+
+										'<td class="cell100 column6"><input type="text" id="correo" value="<?php echo $mostrar['correo']?>"></td>'+
+										'<td class="cell100 column6"><input type="text" id="tel" value="<?php echo $mostrar['tel']?>"></td>'+
+                                        '<td class="cell100 column6"><input type="text" id="pass" value="<?php echo $mostrar['pass']?>"></td>'+
+                                        <?php if( isset($_SESSION['bandLector']) && $_SESSION['bandLector']==true ){ 
+                                            $sql2 = "SELECT * from lector where id= $idusu";
+                                    
+                                            $res2 = mysqli_query($conexion, $sql2);
+                                            $mostrar2 = mysqli_fetch_array($res2);?>
+                                        '<td class="cell100 column6"><input type="text" id="estado" value="<?php echo $mostrar2['estado']?>"> </td>'+
+                                        <?php } ?>
+                                        <?php if(isset ($_SESSION['bandUsuario']) && $_SESSION['bandUsuario']==true){
+                                            $sql2 = "SELECT * from valido where id= $idusu";
+                                    
+                                            $res2 = mysqli_query($conexion, $sql2);
+                                            $mostrar2 = mysqli_fetch_array($res2);?>
+                                        '<td class="cell100 column6"><input type="text" id="id_periodico" value="<?php echo $mostrar2['id_periodico']?>"></td>'+
+                                        '<td class="cell100 column6"><input type="text" id="cedula" value="<?php echo $mostrar2['cedula']?>" ></td>'+
+                                        <?php } ?>
+                                        <?php if(isset ($_SESSION['bandUsuario']) && $_SESSION['bandUsuario']==false){
+                                            $sql2 = "SELECT * from invalido where id= $idusu";
+                                            $res2 = mysqli_query($conexion, $sql2);
+                                            $mostrar2 = mysqli_fetch_array($res2);?>
+                                        '<td class="cell100 column6"><input type="text" id="num_publicaciones" value="<?php echo $mostrar2['num_publicaciones']?>"></td>'+
+                                        <?php } ?>
+										'';
                 document.getElementById('tabla1').appendChild(elemento);
+				tabla.innerHTML += "<br> <input class='btn btn-info' type='button' value='Enviar' onclick='mod()'>";
 
         }
+		function mod(){
+			alert("entre mod");
+			var nombres=document.getElementById("nombres").value;
+			var ap_pa=document.getElementById("ap_pa").value;
+			var ap_ma=document.getElementById("ap_ma").value;
+			var edad=document.getElementById("edad").value;
+			var correo=document.getElementById("correo").value;
+			var tel=document.getElementById("tel").value;
+			var pass=document.getElementById("pass").value;
+			var xhttp1 = new XMLHttpRequest();
+			xhttp1.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (this.response != "error") {
+                        //document.getElementById("contenido").innerHTML=tipo1;
+                        document.getElementById("res").innerHTML += this.response;
+                    } else {
+                        document.getElementById("res").innerHTML = "<p>No se modifico, el ID al que quieres modificar ya existe</p>";
+                    }
+                }
+            };
+			<?php if( isset($_SESSION['bandLector']) && $_SESSION['bandLector']==true ){?>
+			var estado=document.getElementById("estado").value;
+			xhttp1.open("GET", "modificaUsuario.php?a=" + nombres + "&b=" + ap_pa + "&c="+ap_ma+"&d=" + correo + "&f=" + tel + "&g=" + pass + "&h=" + estado, true);
+			<?php } ?>
+			<?php if(isset ($_SESSION['bandUsuario']) && $_SESSION['bandUsuario']==true){?>
+			var id_periodico=document.getElementById("id_periodico").value;
+			var cedula=document.getElementById("cedula").value;
+			xhttp1.open("GET", "modificaUsuario.php?a=" + nombres + "&b=" + ap_pa + "&c="+ap_ma+"&d=" + correo + "&f=" + tel + "&g=" + pass + "&h=" + id_periodico+"&i="+cedula, true);
+			<?php } ?>
+			<?php if(isset ($_SESSION['bandUsuario']) && $_SESSION['bandUsuario']==false){?>
+			var num_publicaciones=document.getElementById("num_oublicaciones").value;
+			xhttp1.open("GET", "modificaUsuario.php?a=" + nombres + "&b=" + ap_pa + "&c="+ap_ma+"&d=" + correo + "&f=" + tel + "&g=" + pass + "&h=" + num_publicaciones, true);
+			<?php } ?>
+            xhttp1.send();
+
+		}
     </script>
 
 
