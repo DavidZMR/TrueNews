@@ -16,8 +16,14 @@
     // $message = $_POST['pass'];
 
     if (count($results) > 0 && ($_POST['pass'] == $results['pass'])) {
+		
+		
 		$_SESSION['bandLector']=false;
 		$_SESSION['user_id'] = $results['id'];
+		if($_SESSION['user_id']=='20'){
+			header('Location: admin.php');
+			exit;
+		}
 		$band = $conn->prepare('SELECT id from valido where id=:id');
 		$band->bindParam(':id', $results['id']);
 		$band->execute();
