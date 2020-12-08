@@ -27,7 +27,11 @@
         $res = mysqli_query($conn,$sql);
         $sql = "SELECT * FROM esta_involucrado ";
         $res = mysqli_query($conn,$sql);
+        $aux2 = $res;
         $indice=0;
+        $sql="SELECT * FROM criticas where id_noticia = '$id'";
+        $resC = mysqli_query($conn,$sql);
+        
         
     ?>
     <div class="container">
@@ -90,10 +94,38 @@
 				
                 <?php };?>
                 </table>
+                <h5>Comentarios.</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Comentarios</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php while($comentarios = mysqli_fetch_array($resC)){
+                            $sql = "SELECT nombres, ap_pa, ap_ma from usuario where id = ".$comentarios['id_lector'];
+                            $usuario = mysqli_fetch_array(mysqli_query($conn,$sql));
+                        ?>
+                        <tr>
+                            <td scope="row"><?php echo $usuario['nombres']." ".$usuario['ap_pa']." ".$usuario['ap_ma']?></td>
+                            <td><?php echo $comentarios['texto'];?></td>
+                        </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
+                <?php if(isset($_SESSION['bandLector']) && $_SESSION['bandLector']){?>
+                <button onclick="comentar(<?php echo $noticia['id']?>)">Comentar</a></button>
+                <?php }?>
             </div>
 
         </div>
     </div>
+    <script>
+        function comentar(id){
+            location.href = 'add_comentario.php?id='+id;
+        }
+    </script>
 
 
     <?php include 'includes/footer1.php'?>

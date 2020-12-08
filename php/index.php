@@ -59,6 +59,7 @@
                             <a href="detalles.php?id=<?php echo $mostrar['id'];?>"  class="detalles">Ver mas detalles>>></a>
                             
                             
+                            
                         </div>
                     </div>
             <?php
