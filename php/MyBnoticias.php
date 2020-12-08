@@ -62,7 +62,7 @@
 </html>
 <script>
     function eliminar(id){
-        var xhttp1 = new XMLHttpRequest();
+        /*var xhttp1 = new XMLHttpRequest();
             xhttp1.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     if (this.response != "error") {
@@ -75,7 +75,8 @@
             };
             xhttp1.open("GET", "eliminaNoticia.php?id=" + id, true);
             xhttp1.send();
-            location.reload();
+            location.reload();*/
+            location.href="eliminaNoticia.php?id="+id;
     }
     function involucrados(id){
         location.href = "MyBinvolucrados.php?id="+id;
