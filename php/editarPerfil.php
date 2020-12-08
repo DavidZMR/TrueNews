@@ -1,11 +1,13 @@
 <?php
-session_start();
+if(!isset($_SESSION)){
+	session_start();
+}
 require 'conexionMYSQL.php';
 ?>
 <!DOCTYPE html>-
 <html lang="en">
 <head>
-	<title>Table V05</title>
+	<title>Editar Perfil</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -328,16 +330,16 @@ require 'conexionMYSQL.php';
             };
 			<?php if( isset($_SESSION['bandLector']) && $_SESSION['bandLector']==true ){?>
 			var estado=document.getElementById("estado").value;
-			xhttp1.open("GET", "modificaUsuario.php?a=" + nombres + "&b=" + ap_pa + "&c="+ap_ma+"&d=" + correo + "&f=" + tel + "&g=" + pass + "&h=" + estado, true);
+			xhttp1.open("GET", "modificaUsuario.php?a=" + nombres + "&b=" + ap_pa + "&c="+ap_ma+"&q="+edad +"&d=" + correo + "&f=" + tel + "&g=" + pass + "&h=" + estado, true);
 			<?php } ?>
 			<?php if(isset ($_SESSION['bandUsuario']) && $_SESSION['bandUsuario']==true){?>
 			var id_periodico=document.getElementById("id_periodico").value;
 			var cedula=document.getElementById("cedula").value;
-			xhttp1.open("GET", "modificaUsuario.php?a=" + nombres + "&b=" + ap_pa + "&c="+ap_ma+"&d=" + correo + "&f=" + tel + "&g=" + pass + "&h=" + id_periodico+"&i="+cedula, true);
+			xhttp1.open("GET", "modificaUsuario.php?a=" + nombres + "&b=" + ap_pa + "&c="+ap_ma+"&q="+edad+"&d=" + correo + "&f=" + tel + "&g=" + pass + "&h=" + id_periodico+"&i="+cedula, true);
 			<?php } ?>
 			<?php if(isset ($_SESSION['bandUsuario']) && $_SESSION['bandUsuario']==false){?>
 			var num_publicaciones=document.getElementById("num_oublicaciones").value;
-			xhttp1.open("GET", "modificaUsuario.php?a=" + nombres + "&b=" + ap_pa + "&c="+ap_ma+"&d=" + correo + "&f=" + tel + "&g=" + pass + "&h=" + num_publicaciones, true);
+			xhttp1.open("GET", "modificaUsuario.php?a=" + nombres + "&b=" + ap_pa + "&c="+ap_ma+"&q="+edad+"&d=" + correo + "&f=" + tel + "&g=" + pass + "&h=" + num_publicaciones, true);
 			<?php } ?>
             xhttp1.send();
 

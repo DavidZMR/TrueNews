@@ -7,11 +7,9 @@ $a=$_GET['a'];
 $b=$_GET['b'];
 $c=$_GET['c'];
 $d=$_GET['d'];
-$e=$_GET['e'];
 $f=$_GET['f'];
 $g=$_GET['g'];
-$h=$_GET['h'];
-$i=$_GET['i'];
+$q=$_GET['q'];
 
 if( isset($_SESSION['bandLector']) && $_SESSION['bandLector']==true ){
     $h=$_GET['h'];
@@ -30,7 +28,7 @@ if(isset ($_SESSION['bandUsuario']) && $_SESSION['bandUsuario']==false){
     $query2="UPDATE invalido SET id_periodico='$h' , cedula='$i' WHERE id='$id'";
     $res = mysqli_query($conexion, $query2);
 }
-$query2="UPDATE usuario SET id='$id', nombres='$a', ap_pa='$b', ap_ma='$c', edad='$d', correo='$e', tel='$f', pass='$g' WHERE id='$id'";
+$query2="UPDATE usuario SET id='$id', nombres='$a', ap_pa='$b', ap_ma='$c', edad='$q', correo='$d', tel='$f', pass='$g' WHERE id='$id'";
 $res = mysqli_query($conexion, $query2);
 
 ?>
