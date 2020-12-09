@@ -48,6 +48,12 @@ if(!isset($_SESSION)){
           <a href="editarPerfil.php" style="color: white;" class="btn btn-default btn-flat">Editar Perfil</a>
         </div>
       <?php } ?>
+      <?php if (isset($_SESSION["user_id"])==20) { ?> 
+        <div class="nav-link">
+          
+          <a href="admin.php" style="color: white;" class="btn btn-default btn-flat">Admin</a>
+        </div>
+      <?php } ?>
       <input class="form-control mr-sm-2" name="noticiaBuscar" type="text" placeholder="Search" aria-label="Search" required>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
