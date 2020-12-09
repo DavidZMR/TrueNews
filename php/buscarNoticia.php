@@ -21,7 +21,7 @@ $noticiaBuscar= isset($_POST['noticiaBuscar']) ? $_POST['noticiaBuscar'] : "";
                 </div>
                 <div class="col-2 categoria text-center"> 
                     <a href="#"><img class="cat" src="/resourses/img/politica.jpg" alt=""></a><br>
-                    <p>Politica</p>
+                    <p>Política</p>
                 </div>
                 <div class="col-2 categoria text-center"> 
                     <a href="#"><img class="cat" src="/resourses/img/deportes.jpg" alt=""></a><br>
@@ -33,7 +33,7 @@ $noticiaBuscar= isset($_POST['noticiaBuscar']) ? $_POST['noticiaBuscar'] : "";
                 </div>
                 <div class="col-2 categoria text-center"> 
                     <a href="#"><img class="cat" src="/resourses/img/tecnologia.jpg" alt=""></a><br>
-                    <p>Tecnologia</p>
+                    <p>Tecnología</p>
                 </div>
                 <div class="col-2 categoria text-center"> 
                     <a href="#"><img class="cat" src="/resourses/img/otros.png" alt=""></a><br>

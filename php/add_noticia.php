@@ -33,10 +33,10 @@
                         <label for="categoria">Categoria: </label>
                         <select name="categoria" id="categoria">
                             <option value="Criminal">Criminal</option>
-                            <option value="Politica">Politica</option>
+                            <option value="Politica">Política</option>
                             <option value="Deportes">Deportes</option>
                             <option value="Ciencia">Ciencia</option>
-                            <option value="Tecnologia">Tecnologia</option>
+                            <option value="Tecnologia">Tecnología</option>
                             <option value="Otros">Otros</option>
                         </select><br>
                         <label for="">Lugar</label><br>
