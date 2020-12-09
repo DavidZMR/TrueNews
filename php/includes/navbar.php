@@ -35,7 +35,7 @@ if(!isset($_SESSION)){
     </ul>
     <form class="form-inline my-2 my-lg-0" action="buscarNoticia.php" method="POST">
     <?php if( isset($_SESSION['bandLector']) && $_SESSION['bandLector']==true ){?>
-        <a href="add_noticia.php" style="color: white;" class="btn btn-default btn-flat">Membresia</a>
+        <a href="add_noticia.php" style="color: white;" class="btn btn-default btn-flat">Membresía</a>
       <?php } ?>
       <?php if(isset ($_SESSION['bandUsuario'])){?>
         <a href="add_noticia.php" style="color: white;" class="btn btn-default btn-flat">Agregar noticia</a>

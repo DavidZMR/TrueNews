@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-2 categoria text-center"> 
                     <a href="categoria.php?cat=Politica"><img class="cat" src="/resourses/img/politica.jpg" alt=""></a><br>
-                    <p>Politica</p>
+                    <p>Política</p>
                 </div>
                 <div class="col-2 categoria text-center"> 
                     <a href="categoria.php?cat=Deportes"><img class="cat" src="/resourses/img/deportes.jpg" alt=""></a><br>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-2 categoria text-center"> 
                     <a href="categoria.php?cat=Tecnologia"><img class="cat" src="/resourses/img/tecnologia.jpg" alt=""></a><br>
-                    <p>Tecnologia</p>
+                    <p>Tecnología</p>
                 </div>
                 <div class="col-2 categoria text-center"> 
                     <a href="categoria.php?cat=Otros"><img class="cat" src="/resourses/img/otros.png" alt=""></a><br>
@@ -56,7 +56,7 @@
                             <p><?php echo $mostrar['fecha']; ?></p>
                             <p><?php echo $mostrar['descripcion']; ?></p>
                             
-                            <a href="detalles.php?id=<?php echo $mostrar['id'];?>"  class="detalles">Ver mas detalles>>></a>
+                            <a href="detalles.php?id=<?php echo $mostrar['id'];?>"  class="detalles">Ver más detalles y comentarios>>></a>
                             
                             
                             

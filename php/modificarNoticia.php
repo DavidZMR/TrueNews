@@ -43,13 +43,13 @@
                         <input type="date" placeholder="Fecha" name="fecha" id="fecha" required value="<?php echo $noticia['fecha']?>"><br>
                         
                         <textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="descripcion"></textarea><br>
-                        <label for="categoria">Categoria: </label>
+                        <label for="categoria">Categoría: </label>
                         <select name="categoria" id="categoria" >
                             <option value="Criminal">Criminal</option>
-                            <option value="Politica">Politica</option>
+                            <option value="Politica">Política</option>
                             <option value="Deportes">Deportes</option>
                             <option value="Ciencia">Ciencia</option>
-                            <option value="Tecnologia">Tecnologia</option>
+                            <option value="Tecnologia">Tecnología</option>
                             <option value="Otros">Otros</option>
                         </select><br>
                         <label for="">Lugar</label><br>

@@ -135,9 +135,9 @@
 						<input class="input100" name="nombre" type="text" placeholder="Nombre" required value="">
                         <input class="input100" name="ape_pat" type="text" placeholder="Apellido Paterno" required value="">
 						<input class="input100" name="ape_mat" type="text" placeholder="Apellido Materno" required value="">
-						<input class="input100" name="fecha" type="number" placeholder="Fecha nac." required value="">
+						<input class="input100" name="fecha" type="number" placeholder="Edad" required value="">
 						<input class="input100" name="email" type="text" placeholder="Email" required value="">
-						<input class="input100" name="telefono" type="number" placeholder="Telefono" required value="">
+						<input class="input100" name="telefono" type="number" placeholder="Teléfono" required value="">
                         <input class="input100" name="password" type="password" placeholder="Contraseña" required>
                         <input class="input100" name="confirm_password" type="password" placeholder="Confirmar Contraseña" required>
 						<br>

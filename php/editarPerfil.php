@@ -74,7 +74,7 @@ require 'conexionMYSQL.php';
 										<th class="cell100 column6">Apellido Materno</th>
 										<th class="cell100 column6">Edad</th>
 										<th class="cell100 column6">Correo Electronico</th>
-										<th class="cell100 column6">Telefono</th>
+										<th class="cell100 column6">Teléfono</th>
                                         <th class="cell100 column6">Contraseña</th>
                                         <?php if( isset($_SESSION['bandLector']) && $_SESSION['bandLector']==true ){ ?>
                                         <th class="cell100 column6">Estado Preferido</th>

@@ -49,15 +49,15 @@
                         <p><?php echo $noticia['descripcion']; ?></p>
                     </div>
                 </div>
-                <h5>Lugar de los echos</h5>
+                <h5>Lugar de los hechos</h5>
                 <table class="table table-striped">
 					<thead>
 						<tr>
-                            <th>Pais</th>
+                            <th>País</th>
 							<th>Estado</th>
 							<th>Municipio</th>
                             <th>Calle</th>
-                            <th>Numero</th>
+                            <th>Número</th>
 						</tr>
                     </thead>
                     <tbody>
